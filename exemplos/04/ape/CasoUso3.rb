@@ -1,0 +1,146 @@
+require "lftmi"
+# Cenário 3:
+# p 381
+rape = LFTMI::C04::APE::ReconhecedorAPE.new("11", ["18"])
+
+# Bloco
+rape.automato.adicionarTransicao({["I", "11", "begin"] => ["12"]})
+rape.automato.adicionarTransicao({["I", "12", "decl"] => ["13"]}) # <- ERRO NA PRODUÇÃO DA P. 12 DA APOSTILA!!!
+rape.automato.adicionarTransicao({["I", "13", "id"] => ["14"]})
+rape.automato.adicionarTransicao({["I", "14", ","] => ["13"]})
+rape.automato.adicionarTransicao({["I", "14", ";"] => ["15"]})
+rape.automato.adicionarTransicao({["I", "15", "decl"] => ["13"]})
+rape.automato.adicionarTransicao({["A", "15", ""] => ["16", "21"]})
+rape.automato.adicionarTransicao({["I", "16", "end"] => ["18"]})
+rape.automato.adicionarTransicao({["I", "16", ";"] => ["17"]})
+rape.automato.adicionarTransicao({["A", "17", ""] => ["16", "21"]})
+rape.automato.adicionarTransicao({["R", "18", "221"] => []})
+rape.automato.adicionarTransicao({["R", "18", "Z0"] => []})
+# Comando
+rape.automato.adicionarTransicao({["I", "21", "id"] => ["22"]})
+rape.automato.adicionarTransicao({["I", "22", ":"] => ["21"]}) # <- erro?
+rape.automato.adicionarTransicao({["I", "22", "="] => ["25"]})
+rape.automato.adicionarTransicao({["I", "23", "id"] => ["24"]})
+rape.automato.adicionarTransicao({["I", "23", "if"] => ["27"]})
+rape.automato.adicionarTransicao({["I", "23", "w"] => ["215"]})
+rape.automato.adicionarTransicao({["I", "21", "goto"] => ["222"]})
+rape.automato.adicionarTransicao({["A", "23", ""] => ["221", "11"]})
+rape.automato.adicionarTransicao({["I", "222", "id"] => ["223"]})
+rape.automato.adicionarTransicao({["R", "223", "16"] => []})
+rape.automato.adicionarTransicao({["I", "24", "="] => ["25"]})
+rape.automato.adicionarTransicao({["A", "25", ""] => ["26", "31"]})
+rape.automato.adicionarTransicao({["R", "26", "16"] => []})
+rape.automato.adicionarTransicao({["R", "26", "212"] => []})
+rape.automato.adicionarTransicao({["R", "26", "214"] => []})
+rape.automato.adicionarTransicao({["R", "26", "220"] => []})
+rape.automato.adicionarTransicao({["A", "27", ""] => ["28", "31"]})
+rape.automato.adicionarTransicao({["I", "28", ">"] => ["29"]})
+rape.automato.adicionarTransicao({["I", "28", "="] => ["29"]})
+rape.automato.adicionarTransicao({["I", "28", "<"] => ["29"]})
+rape.automato.adicionarTransicao({["A", "29", ""] => ["210", "31"]})
+rape.automato.adicionarTransicao({["I", "210", "then"] => ["211"]})
+rape.automato.adicionarTransicao({["A", "211", ""] => ["212", "21"]})
+rape.automato.adicionarTransicao({["R", "212", "16"] => []})
+rape.automato.adicionarTransicao({["R", "212", "212"] => []})
+rape.automato.adicionarTransicao({["R", "212", "214"] => []})
+rape.automato.adicionarTransicao({["R", "212", "220"] => []})
+rape.automato.adicionarTransicao({["I", "212", "else"] => ["213"]})
+rape.automato.adicionarTransicao({["A", "213", ""] => ["214", "21"]})
+rape.automato.adicionarTransicao({["R", "214", "16"] => []})
+rape.automato.adicionarTransicao({["R", "214", "212"] => []})
+rape.automato.adicionarTransicao({["R", "214", "214"] => []})
+rape.automato.adicionarTransicao({["R", "214", "220"] => []})
+rape.automato.adicionarTransicao({["A", "215", ""] => ["216", "31"]})
+rape.automato.adicionarTransicao({["I", "216", ">"] => ["217"]})
+rape.automato.adicionarTransicao({["I", "216", "="] => ["217"]})
+rape.automato.adicionarTransicao({["I", "216", "<"] => ["217"]})
+rape.automato.adicionarTransicao({["A", "217", ""] => ["218", "31"]})
+rape.automato.adicionarTransicao({["I", "218", "do"] => ["219"]})
+rape.automato.adicionarTransicao({["A", "219", ""] => ["220", "21"]})
+rape.automato.adicionarTransicao({["R", "220", "16"] => []})
+rape.automato.adicionarTransicao({["R", "220", "212"] => []})
+rape.automato.adicionarTransicao({["R", "220", "214"] => []})
+rape.automato.adicionarTransicao({["R", "220", "220"] => []})
+rape.automato.adicionarTransicao({["R", "221", "16"] => []})
+rape.automato.adicionarTransicao({["R", "221", "212"] => []})
+rape.automato.adicionarTransicao({["R", "221", "214"] => []})
+rape.automato.adicionarTransicao({["R", "221", "220"] => []})
+rape.automato.adicionarTransicao({["I", "222", "id"] => ["223"]})
+rape.automato.adicionarTransicao({["R", "223", "16"] => []})
+rape.automato.adicionarTransicao({["R", "223", "212"] => []})
+rape.automato.adicionarTransicao({["R", "223", "214"] => []})
+rape.automato.adicionarTransicao({["R", "223", "220"] => []})
+# Expressão
+rape.automato.adicionarTransicao({["I", "31", "id"] => ["34"]})
+rape.automato.adicionarTransicao({["I", "31", "num"] => ["34"]})
+rape.automato.adicionarTransicao({["I", "31", "("] => ["32"]})
+rape.automato.adicionarTransicao({["A", "32", ""] => ["33", "31"]})
+rape.automato.adicionarTransicao({["I", "33", ")"] => ["34"]})
+rape.automato.adicionarTransicao({["I", "34", "+"] => ["31"]})
+rape.automato.adicionarTransicao({["I", "34", "-"] => ["31"]})
+rape.automato.adicionarTransicao({["I", "34", "*"] => ["31"]})
+rape.automato.adicionarTransicao({["I", "34", "/"] => ["31"]})
+rape.automato.adicionarTransicao({["R", "34", "26"] => []})
+rape.automato.adicionarTransicao({["R", "34", "28"] => []})
+rape.automato.adicionarTransicao({["R", "34", "210"] => []})
+rape.automato.adicionarTransicao({["R", "34", "215"] => []})
+rape.automato.adicionarTransicao({["R", "34", "218"] => []})
+rape.automato.adicionarTransicao({["R", "34", "33"] => []})
+
+rape.automato.entrada = LFTMI::C04::APE::FitaLP.new
+
+programa = <<~TXT
+  begin
+     decl
+     id ;
+     id : id = num + id * ( num )
+  end
+TXT
+
+rape.iniciar(programa)
+automatos = rape.analisar
+puts rape.reconheceu?
+automatos.each do |a|
+  puts a.configuracao?
+end
+puts
+# true
+# (11, (1, < [begin]decl id ; id : goto id end > ))
+# (12, (2, < begin [decl]id ; id : goto id end > ))
+# (13, (3, < begin decl [id]; id : goto id end > ))
+# (14, (4, < begin decl id [;]id : goto id end > ))
+# (15, (5, < begin decl id ; [id]: goto id end > ))
+# (21, (5, < begin decl id ; [id]: goto id end > ))
+# (22, (6, < begin decl id ; id [:]goto id end > ))
+# (21, (7, < begin decl id ; id : [goto]id end > ))
+# (222, (8, < begin decl id ; id : goto [id]end > ))
+# (223, (9, < begin decl id ; id : goto id [end]> ))
+# (16, (9, < begin decl id ; id : goto id [end]> ))
+# (18, (10, < begin decl id ; id : goto id end [>]))
+
+# false
+# (11, (1, < [begin]decl id ; id : id = num + id * ( num ) end > ))
+# (12, (2, < begin [decl]id ; id : id = num + id * ( num ) end > ))
+# (13, (3, < begin decl [id]; id : id = num + id * ( num ) end > ))
+# (14, (4, < begin decl id [;]id : id = num + id * ( num ) end > ))
+# (15, (5, < begin decl id ; [id]: id = num + id * ( num ) end > ))
+# (21, (5, < begin decl id ; [id]: id = num + id * ( num ) end > ))
+# (22, (6, < begin decl id ; id [:]id = num + id * ( num ) end > ))
+# (21, (7, < begin decl id ; id : [id]= num + id * ( num ) end > ))
+# (22, (8, < begin decl id ; id : id [=]num + id * ( num ) end > ))
+# (25, (9, < begin decl id ; id : id = [num]+ id * ( num ) end > ))
+# (31, (9, < begin decl id ; id : id = [num]+ id * ( num ) end > ))
+# (34, (10, < begin decl id ; id : id = num [+]id * ( num ) end > ))
+# (31, (11, < begin decl id ; id : id = num + [id]* ( num ) end > ))
+# (26, (10, < begin decl id ; id : id = num [+]id * ( num ) end > ))
+# (34, (12, < begin decl id ; id : id = num + id [*]( num ) end > ))
+# (31, (13, < begin decl id ; id : id = num + id * [(]num ) end > ))
+# (26, (12, < begin decl id ; id : id = num + id [*]( num ) end > ))
+# (32, (14, < begin decl id ; id : id = num + id * ( [num]) end > ))
+# (31, (14, < begin decl id ; id : id = num + id * ( [num]) end > ))
+# (34, (15, < begin decl id ; id : id = num + id * ( num [)]end > ))
+# (33, (15, < begin decl id ; id : id = num + id * ( num [)]end > ))
+# (26, (15, < begin decl id ; id : id = num + id * ( num [)]end > ))
+# (34, (16, < begin decl id ; id : id = num + id * ( num ) [end]> ))
+# (33, (16, < begin decl id ; id : id = num + id * ( num ) [end]> ))
+# (26, (16, < begin decl id ; id : id = num + id * ( num ) [end]> ))
