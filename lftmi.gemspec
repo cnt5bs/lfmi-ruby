@@ -8,6 +8,8 @@ Gem::Specification.new do |s|
     f.match(%r{^(test|spec|features)/})
   end
   s.homepage = "https://github.com/cnt5bs/lfmi-ruby"
+  s.license = "MIT" 
+  s.email = ["italosvg@gmail.com"]
   s.require_paths = ["lib"]
   s.required_ruby_version = ">= 3.0.0"
   s.executables = []
