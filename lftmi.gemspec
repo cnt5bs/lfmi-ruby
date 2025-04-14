@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  s.homepage = "https://github.com/ItaloSV/lftmi" # Or your actual URL
+  s.homepage = "https://github.com/cnt5bs/lfmi-ruby"
   s.require_paths = ["lib"]
   s.required_ruby_version = ">= 3.0.0"
   s.executables = []
